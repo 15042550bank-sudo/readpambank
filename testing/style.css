@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* ป้องกันแถบเลื่อน */
+    font-family: 'Sarabun', sans-serif; /* แนะนำให้ใช้ฟอนต์ภาษาไทย */
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: black;
+}
+
+#background {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#character-sprite {
+    position: absolute;
+    bottom: 20px; /* ปรับตำแหน่ง */
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 80%; /* จำกัดความสูง */
+    /* เพิ่มภาพตัวละครใน JavaScript */
+}
+
+#dialogue-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%; /* ปรับความสูง */
+    background-color: rgba(0, 0, 0, 0.7); /* พื้นหลังโปร่งแสง */
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+#character-name {
+    margin-top: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#dialogue-text {
+    flex-grow: 1; /* ให้ข้อความขยายเต็มพื้นที่ */
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+#choices-container {
+    display: flex;
+    flex-direction: column; /* จัดปุ่มตัวเลือกแนวตั้ง */
+    gap: 10px;
+}
+
+.choice-button {
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 5px;
+}
+
+/* แอนิเมชันสำหรับตัวละคร */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+#character-sprite img {
+    max-height: 100%;
+    animation: fadeIn 0.5s ease-out; /* ตัวละครจะค่อยๆ ลอยขึ้นมา */
+}
+
+/* แอนิเมชันสำหรับฉากหลัง */
+.fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 10;
+}
+
+.fade-overlay.active {
+    opacity: 1;
+}
+
+/* เอฟเฟกต์พิมพ์ดีดเบื้องต้น */
+#dialogue-text {
+    min-height: 3em;
+}
